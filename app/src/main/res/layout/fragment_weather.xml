@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+  >
+
+    <data>
+        <variable
+            name="current"
+            type="com.mrmukto.climeforecast.models.CurrentModel" />
+
+    </data>
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            tools:context=".WeatherFragment">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="2"
+
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/dateTV"
+                    style="@style/TextAppearance.AppCompat.Subhead"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="35dp"
+                    android:layout_marginStart="7dp"
+                    app:setDateTime="@{current.dt}"
+                    tools:text="May 10, 2022, 11:57" />
+
+                <TextView
+                    android:id="@+id/addressTV"
+                    style="@style/TextAppearance.AppCompat.Headline"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="7dp"
+                    android:text="@{current.name+`,`+current.sys.country}"
+                    tools:text="Dhaka, BD" />
+
+                <androidx.appcompat.widget.SwitchCompat
+                    android:id="@+id/tempSwitch"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:textOff="C"
+                    android:textOn="F"
+                    app:showText="true" />
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+
+                    android:orientation="horizontal">
+                    <TextView
+                        android:id="@+id/tempTV"
+                        style="@style/TextAppearance.AppCompat.Headline"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="@{current.main.temp+`\u00B0`}"
+                        android:textSize="70sp"
+                        tools:text="35\u00B0" />
+                    <ImageView
+
+                        android:id="@+id/iconIV"
+                        android:layout_width="70dp"
+                        android:layout_height="70dp"
+                        android:src="@mipmap/ic_launcher_round"
+                        app:setWeatherIcon="@{current.weather[0].icon}" />
+
+
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center">
+                    <TextView
+                        android:id="@+id/feelsLikeTV"
+                        style="@style/TextAppearance.AppCompat.Body1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{`feels like:`+current.main.feelsLike+`\u00B0`}"
+                        tools:text="feels like: 40\u00B0" />
+
+                    <TextView
+                        android:id="@+id/conditionTV"
+                        style="@style/TextAppearance.AppCompat.Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{current.weather[0].description}"
+                        tools:text="Overcast" />
+                </LinearLayout>
+
+
+
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Humidity: " />
+
+                    <TextView
+                        android:id="@+id/humidityTV"
+                        style="@style/TextAppearance.AppCompat.Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(current.main.humidity)}"
+                        tools:text="74" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="Pressure: " />
+
+                    <TextView
+                        android:id="@+id/pressureTV"
+                        style="@style/TextAppearance.AppCompat.Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@{String.valueOf(current.main.pressure)}"
+                        tools:text="1008" />
+
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Sunrise: " />
+
+                    <TextView
+                        android:id="@+id/sunrise"
+                        style="@style/TextAppearance.AppCompat.Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:setTime="@{current.sys.sunrise}"
+                        tools:text="5.40 am" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="5dp"
+                        android:text="Sunset: " />
+
+                    <TextView
+                        android:id="@+id/sunset"
+                        style="@style/TextAppearance.AppCompat.Body2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:setTime="@{current.sys.sunset}"
+                        tools:text="6.52 pm" />
+
+
+                </LinearLayout>
+
+
+
+
+
+            </LinearLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1">
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Today's Weather Forecast "
+                    android:padding="5dp"
+                    android:layout_marginBottom="15dp"/>
+
+                <TextView
+                    android:id="@+id/tt"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="20dp"
+                    android:textColor="@color/purple_200"
+                    android:layout_marginBottom="5dp"/>
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/forecastRV"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/tt" />
+            </RelativeLayout>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>
